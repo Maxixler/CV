@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eren Kale | Electrical & Electronics Engineer</title>
+    <meta name="description"
+        content="Eren Kale - Electrical & Electronics Engineering student at Marmara University. Chip design, embedded systems, AI, and RF engineering.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Particle Canvas Background -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <span class="logo-bracket">&lt;</span>EK<span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <!-- Circuit SVG Background -->
+        <svg class="hero-circuit" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="circuit-path" d="M0 300 H200 L230 270 H400" stroke="rgba(0,212,255,0.15)" stroke-width="1" />
+            <path class="circuit-path" d="M800 200 H600 L570 230 H450 L420 260" stroke="rgba(124,58,237,0.12)"
+                stroke-width="1" />
+            <path class="circuit-path" d="M400 0 V150 L430 180 V300" stroke="rgba(0,212,255,0.1)" stroke-width="1" />
+            <path class="circuit-path" d="M100 600 V450 L130 420 V350" stroke="rgba(124,58,237,0.1)" stroke-width="1" />
+            <circle class="circuit-node" cx="200" cy="300" r="3" fill="rgba(0,212,255,0.3)" />
+            <circle class="circuit-node" cx="400" cy="270" r="3" fill="rgba(0,212,255,0.3)" />
+            <circle class="circuit-node" cx="600" cy="200" r="3" fill="rgba(124,58,237,0.3)" />
+            <circle class="circuit-node" cx="430" cy="180" r="3" fill="rgba(0,212,255,0.3)" />
+        </svg>
+
+        <div class="hero-content">
+            <div class="hero-badge">&#9889; Electrical & Electronics Engineering</div>
+            <h1 class="hero-title">
+                <span class="hero-greeting">Hello, I'm</span>
+                <span class="hero-name glitch" data-text="Eren Kale">Eren Kale</span>
+            </h1>
+            <div class="hero-typing-wrapper">
+                <span class="hero-typing-prefix">I </span>
+                <span class="hero-typed" id="typed-text"></span>
+                <span class="typed-cursor">|</span>
+            </div>
+
+            <!-- Mini Terminal -->
+            <div class="hero-terminal glass-card">
+                <div class="terminal-header">
+                    <span class="terminal-dot" style="background:#ff5f57"></span>
+                    <span class="terminal-dot" style="background:#febc2e"></span>
+                    <span class="terminal-dot" style="background:#28c840"></span>
+                    <span class="terminal-title">eren@kale:~</span>
+                </div>
+                <div class="terminal-body" id="terminal-body">
+                    <div class="terminal-line"><span class="t-prompt">$</span> <span class="t-cmd">whoami</span></div>
+                    <div class="terminal-line t-output">EE Engineer · Chip Designer · AI Developer</div>
+                    <div class="terminal-line"><span class="t-prompt">$</span> <span class="t-cmd">cat
+                            interests.txt</span></div>
+                    <div class="terminal-line t-output">RISC-V · FPGA · Embedded AI · RF/SDR</div>
+                    <div class="terminal-line"><span class="t-prompt">$</span> <span class="t-cmd">echo $MOTTO</span>
+                    </div>
+                    <div class="terminal-line t-output">"Building the future — one transistor at a time."</div>
+                </div>
+            </div>
+
+            <div class="hero-cta">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                <a href="https://github.com/Maxixler" target="_blank" class="btn btn-github">&#128187; GitHub</a>
+            </div>
+        </div>
+
+        <!-- Orbiting Tech Ring -->
+        <div class="hero-orbit-wrapper">
+            <div class="hero-image-glow"></div>
+            <img src="vesikalık.jpg" alt="Eren Kale" class="hero-image">
+            <div class="orbit-ring">
+                <div class="orbit-icon" style="--i:0">&#9881;&#65039;</div>
+                <div class="orbit-icon" style="--i:1">&#128200;</div>
+                <div class="orbit-icon" style="--i:2">&#129302;</div>
+                <div class="orbit-icon" style="--i:3">&#128225;</div>
+                <div class="orbit-icon" style="--i:4">&#128218;</div>
+                <div class="orbit-icon" style="--i:5">&#128187;</div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <span>Scroll Down</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-number">01.</span> About Me
+            </h2>
+            <div class="about-grid">
+                <div class="about-text glass-card">
+                    <p>
+                        I'm a <strong>senior Electrical & Electronics Engineering</strong> student at
+                        <strong>Marmara University</strong>, Istanbul. My journey spans from designing
+                        low-power chips to deploying AI on embedded systems.
+                    </p>
+                    <p>
+                        I spent a semester at <strong>Technische Universität Ilmenau</strong> in Germany
+                        through the Erasmus+ program, diving deep into Deep Learning and Communication Systems.
+                        I also pursue a B.A. in <strong>Business Administration</strong> at Atatürk University.
+                    </p>
+                    <p>
+                        As the former <strong>Chairman of the Executive Board</strong> of the EE Engineering Club,
+                        I've led 400+ members, organized events, secured sponsorships, and mentored Teknofest teams.
+                        I believe great engineering is a team sport.
+                    </p>
+                </div>
+                <div class="about-highlights">
+                    <div class="highlight-card glass-card">
+                        <div class="highlight-icon">&#128200;</div>
+                        <h3>Chip Design</h3>
+                        <p>TÜBİTAK-funded low-power chip design & Teknofest finalist</p>
+                    </div>
+                    <div class="highlight-card glass-card">
+                        <div class="highlight-icon">&#129302;</div>
+                        <h3>AI & Vision</h3>
+                        <p>Industrial computer vision with OpenCV & TensorFlow</p>
+                    </div>
+                    <div class="highlight-card glass-card">
+                        <div class="highlight-icon">&#128225;</div>
+                        <h3>RF & SDR</h3>
+                        <p>LoRaWAN signal analysis with USRP E310 & GNU Radio</p>
+                    </div>
+                    <div class="highlight-card glass-card">
+                        <div class="highlight-icon">&#128218;</div>
+                        <h3>Research</h3>
+                        <p>Published paper on RISC-V SoC FPGA prototyping</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-number">02.</span> Education
+            </h2>
+            <div class="timeline">
+                <div class="timeline-item glass-card" data-animate>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2022 — 2026</div>
+                    <h3>Marmara University</h3>
+                    <p class="timeline-location">&#128205; Istanbul, Turkey</p>
+                    <p class="timeline-degree">B.Sc., Electrical and Electronics Engineering</p>
+                    <p class="timeline-detail">Relevant Coursework: Embedded Systems, Machine Learning, Control Systems,
+                        Communication Systems</p>
+                </div>
+                <div class="timeline-item glass-card" data-animate>
+                    <div class="timeline-dot dot-accent"></div>
+                    <div class="timeline-date">Oct 2024 — March 2025</div>
+                    <h3>Technische Universität Ilmenau</h3>
+                    <p class="timeline-location">&#127465;&#127466; Ilmenau, Germany</p>
+                    <p class="timeline-degree">Erasmus+ Exchange Program</p>
+                    <p class="timeline-detail">Focus on Deep Learning and Communication Systems</p>
+                </div>
+                <div class="timeline-item glass-card" data-animate>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2022 — 2026</div>
+                    <h3>Atatürk University</h3>
+                    <p class="timeline-location">&#128205; Erzurum, Turkey</p>
+                    <p class="timeline-degree">B.A., Business Administration (Open Education)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-number">03.</span> Experience
+            </h2>
+            <div class="experience-grid">
+                <div class="exp-card glass-card" data-animate>
+                    <div class="exp-header">
+                        <div class="exp-company">Turkcell</div>
+                        <div class="exp-date">July 2025 — Sept 2025</div>
+                    </div>
+                    <div class="exp-role">Mobile Network Planning Intern (Europe-East)</div>
+                    <ul class="exp-details">
+                        <li>Optimized network coverage and analyzed cell performance through drive testing.</li>
+                        <li>Supported the implementation of 5G/LTE technologies and resolved interference management
+                            issues.</li>
+                    </ul>
+                    <div class="exp-tags">
+                        <span class="tag">5G</span>
+                        <span class="tag">LTE</span>
+                        <span class="tag">Network Planning</span>
+                    </div>
+                </div>
+
+                <div class="exp-card glass-card" data-animate>
+                    <div class="exp-header">
+                        <div class="exp-company">E3TAM Industrial AI & Automation</div>
+                        <div class="exp-date">July 2024 — Aug 2024</div>
+                    </div>
+                    <div class="exp-role">R&D Intern</div>
+                    <ul class="exp-details">
+                        <li>Engineered industrial computer vision solutions using OpenCV and TensorFlow.</li>
+                        <li>Deployed AI models on Raspberry Pi 5 within embedded Linux environments.</li>
+                    </ul>
+                    <div class="exp-tags">
+                        <span class="tag">OpenCV</span>
+                        <span class="tag">TensorFlow</span>
+                        <span class="tag">Raspberry Pi</span>
+                    </div>
+                </div>
+
+                <div class="exp-card glass-card" data-animate>
+                    <div class="exp-header">
+                        <div class="exp-company">T3 Foundation (Deneyap Kart Project)</div>
+                        <div class="exp-date">March 2024 — July 2024</div>
+                    </div>
+                    <div class="exp-role">Project Developer</div>
+                    <ul class="exp-details">
+                        <li>Designed hardware features and managed software integration for the Deneyap board.</li>
+                    </ul>
+                    <div class="exp-tags">
+                        <span class="tag">Embedded</span>
+                        <span class="tag">Hardware</span>
+                        <span class="tag">C++</span>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-number">04.</span> Projects
+            </h2>
+            <div class="projects-grid">
+                <div class="project-card glass-card" data-animate>
+                    <div class="project-icon">&#9889;</div>
+                    <div class="project-status">Feb 2024 — Present</div>
+                    <h3>HexaChipsters — Chip Design Team</h3>
+                    <p>
+                        Secured TÜBİTAK 2209-A grant for <em>"Low-Power Chip Design for Industrial Applications"</em>.
+                        Finalist at Teknofest Chip Design competition — <strong>7th in Turkey</strong> — for the
+                        design and verification of the <strong>"Mergen"</strong> processor.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tag">Verilog</span>
+                        <span class="tag">RISC-V</span>
+                        <span class="tag">FPGA</span>
+                        <span class="tag">RTL Design</span>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-animate>
+                    <div class="project-icon">&#128225;</div>
+                    <div class="project-status">Sept 2025 — Present</div>
+                    <h3>SDR-Based LoRaWAN Analysis</h3>
+                    <p class="project-badge">Senior Design Project</p>
+                    <p>
+                        Analyzing 868 MHz signals in real-time using <strong>USRP E310 SDR</strong>,
+                        UHD drivers, and <strong>GNU Radio</strong> on Arch Linux.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tag">GNU Radio</span>
+                        <span class="tag">USRP E310</span>
+                        <span class="tag">SDR</span>
+                        <span class="tag">LoRaWAN</span>
+                    </div>
+                </div>
+
+                <!-- GitHub Repos -->
+                <div class="project-card glass-card github-card" data-animate>
+                    <div class="project-icon">&#128187;</div>
+                    <div class="project-status">GitHub Repository</div>
+                    <h3>Embedded Projects</h3>
+                    <p>Collection of embedded systems projects and firmware experiments.</p>
+                    <div class="project-tech">
+                        <span class="tag">C</span>
+                        <span class="tag">Embedded</span>
+                    </div>
+                    <a href="https://github.com/Maxixler/EmbeddedProjects" target="_blank" class="project-link">
+                        View on GitHub &#8599;
+                    </a>
+                </div>
+
+                <div class="project-card glass-card github-card" data-animate>
+                    <div class="project-icon">&#127918;</div>
+                    <div class="project-status">GitHub Repository</div>
+                    <h3>Deneyap Kart Projects</h3>
+                    <p>Hardware and software projects built for the Deneyap development board.</p>
+                    <div class="project-tech">
+                        <span class="tag">C++</span>
+                        <span class="tag">IoT</span>
+                    </div>
+                    <a href="https://github.com/Maxixler/DeneyapProjeler" target="_blank" class="project-link">
+                        View on GitHub &#8599;
+                    </a>
+                </div>
+
+                <div class="project-card glass-card github-card" data-animate>
+                    <div class="project-icon">&#128421;</div>
+                    <div class="project-status">GitHub Repository</div>
+                    <h3>C & C++ Projects</h3>
+                    <p>Algorithmic problems, data structures, and systems programming in C/C++.</p>
+                    <div class="project-tech">
+                        <span class="tag">C</span>
+                        <span class="tag">C++</span>
+                    </div>
+                    <a href="https://github.com/Maxixler/C-Cpp" target="_blank" class="project-link">
+                        View on GitHub &#8599;
+                    </a>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-number">05.</span> Publications
+            </h2>
+            <div class="publication-card glass-card" data-animate>
+                <div class="pub-icon">&#128214;</div>
+                <div class="pub-content">
+                    <h3>FPGA Prototyping: RISC-V Based SoC Design and Testing Processes</h3>
+                    <p class="pub-journal">Pamukkale University Journal of Engineering Sciences</p>
+                    <p class="pub-date">December 2025</p>
+                    <p class="pub-abstract">
+                        Prototyped and tested a RISC-V System-on-Chip on FPGA, covering the full design
+                        pipeline from RTL to silicon validation.
+                    </p>
+                    <a href="https://dergipark.org.tr/tr/pub/pajes/article/1815680" target="_blank" class="pub-link">
+                        &#128196; Read Full Paper on DergiPark &#8599;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section id="leadership" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-number">06.</span> Leadership & Activities
+            </h2>
+            <div class="leadership-card glass-card" data-animate>
+                <h3>Marmara University Electrical and Electronics Engineering Club</h3>
+                <div class="leadership-roles">
+                    <div class="role-badge">&#127941; Chairman of Supervisory Board</div>
+                    <div class="role-badge">&#128081; Former Chairman of Executive Board</div>
+                    <div class="role-badge">&#129302; Former Head of Robotics Division</div>
+                </div>
+                <ul class="leadership-details">
+                    <li>Managed 400+ members, coordinated events, and secured corporate sponsorships.</li>
+                    <li>Mentored multiple Teknofest competition teams.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-number">07.</span> Skills & Interests
+            </h2>
+            <div class="skills-grid">
+                <div class="skill-category glass-card" data-animate>
+                    <h3>&#9881;&#65039; Hardware / RTL</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Verilog</span>
+                        <span class="skill-tag">RTL Design</span>
+                        <span class="skill-tag">FPGA Prototyping</span>
+                        <span class="skill-tag">RISC-V</span>
+                        <span class="skill-tag">RF Engineering</span>
+                        <span class="skill-tag">Altium Designer</span>
+                    </div>
+                </div>
+                <div class="skill-category glass-card" data-animate>
+                    <h3>&#128187; Software / AI</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">MATLAB</span>
+                        <span class="skill-tag">OpenCV</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">Simulink</span>
+                        <span class="skill-tag">GNU Radio</span>
+                        <span class="skill-tag">UHD Drivers</span>
+                    </div>
+                </div>
+                <div class="skill-category glass-card" data-animate>
+                    <h3>&#127760; Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag lang-native">Turkish — Native</span>
+                        <span class="skill-tag lang-c1">English — C1</span>
+                        <span class="skill-tag lang-a2">German — A2</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-number">08.</span> Get in Touch
+            </h2>
+            <p class="contact-intro">
+                Got a project idea, research opportunity, or want to collaborate?<br>
+                Let's connect — I'm always open to exciting challenges.
+            </p>
+            <div class="contact-grid">
+                <a href="mailto:ereenkale@gmail.com" class="contact-card glass-card" data-animate>
+                    <div class="contact-icon">&#9993;&#65039;</div>
+                    <h3>Email</h3>
+                    <p>ereenkale@gmail.com</p>
+                </a>
+
+                <a href="https://www.linkedin.com/in/erenkale/" target="_blank" class="contact-card glass-card"
+                    data-animate>
+                    <div class="contact-icon">&#128279;</div>
+                    <h3>LinkedIn</h3>
+                    <p>linkedin.com/in/erenkale</p>
+                </a>
+                <a href="https://github.com/Maxixler" target="_blank" class="contact-card glass-card" data-animate>
+                    <div class="contact-icon">&#128187;</div>
+                    <h3>GitHub</h3>
+                    <p>github.com/Maxixler</p>
+                </a>
+            </div>
+            <div class="contact-location">
+                <span>&#128205;</span> Istanbul, Turkey
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Designed & Built by <strong>Eren Kale</strong> &copy; 2026</p>
+            <div class="footer-links">
+                <a href="https://github.com/Maxixler" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/erenkale/" target="_blank">LinkedIn</a>
+                <a href="mailto:ereenkale@gmail.com">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
