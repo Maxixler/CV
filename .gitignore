@@ -1,2 +1,14 @@
-*.png
-*.jpg
+# Build scripts
+optimize_image.ps1
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# Original unoptimized images (too large for git)
+vesikalik.png

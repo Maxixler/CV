@@ -7,11 +7,77 @@
     <title>Eren Kale | Electrical & Electronics Engineer</title>
     <meta name="description"
         content="Eren Kale - Electrical & Electronics Engineering student at Marmara University. Chip design, embedded systems, AI, and RF engineering.">
+
+    <!-- Security Meta Tags -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src 'none';">
+
+    <!-- SEO & Social Meta -->
+    <meta name="author" content="Eren Kale">
+    <meta name="keywords" content="Eren Kale, Electrical Engineer, Chip Design, RISC-V, FPGA, Embedded Systems, AI, RF Engineering, Portfolio">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://erenkale.dev/">
+
+    <!-- Open Graph (Facebook, LinkedIn) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Eren Kale | Electrical & Electronics Engineer">
+    <meta property="og:description" content="Chip design, embedded systems, AI, and RF engineering. Portfolio of Eren Kale — Marmara University EE.">
+    <meta property="og:url" content="https://erenkale.dev/">
+    <meta property="og:image" content="https://erenkale.dev/profile_avatar.png">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Eren Kale Portfolio">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Eren Kale | Electrical & Electronics Engineer">
+    <meta name="twitter:description" content="Chip design, embedded systems, AI, and RF engineering.">
+    <meta name="twitter:image" content="https://erenkale.dev/profile_avatar.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="profile_avatar.png">
+    <link rel="apple-touch-icon" href="profile_avatar.png">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Eren Kale",
+        "jobTitle": "Electrical & Electronics Engineer",
+        "url": "https://erenkale.dev",
+        "sameAs": [
+            "https://github.com/Maxixler",
+            "https://www.linkedin.com/in/erenkale/"
+        ],
+        "alumniOf": [
+            {
+                "@type": "CollegeOrUniversity",
+                "name": "Marmara University"
+            },
+            {
+                "@type": "CollegeOrUniversity",
+                "name": "Technische Universität Ilmenau"
+            }
+        ],
+        "knowsAbout": ["Chip Design", "RISC-V", "FPGA", "Embedded Systems", "AI", "RF Engineering", "LoRaWAN"]
+    }
+    </script>
+
+    <!-- Performance: Preconnect & Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
+
+    <!-- Preload critical assets -->
+    <link rel="preload" as="image" href="vesikalik_optimized.jpg">
+    <link rel="preload" as="style" href="style.css">
+    <link rel="preload" as="script" href="script.js">
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -92,14 +158,14 @@
             <div class="hero-cta">
                 <a href="#projects" class="btn btn-primary">View Projects</a>
                 <a href="#contact" class="btn btn-secondary">Get in Touch</a>
-                <a href="https://github.com/Maxixler" target="_blank" class="btn btn-github">&#128187; GitHub</a>
+                <a href="https://github.com/Maxixler" target="_blank" rel="noopener noreferrer" class="btn btn-github">&#128187; GitHub</a>
             </div>
         </div>
 
         <!-- Orbiting Tech Ring -->
         <div class="hero-orbit-wrapper">
             <div class="hero-image-glow"></div>
-            <img src="vesikalik.png" alt="Eren Kale" class="hero-image">
+            <img src="vesikalik_optimized.jpg" alt="Eren Kale — Electrical & Electronics Engineer" class="hero-image" loading="eager" width="466" height="600" fetchpriority="high">
             <div class="orbit-ring">
                 <div class="orbit-icon" style="--i:0">&#9881;&#65039;</div>
                 <div class="orbit-icon" style="--i:1">&#128200;</div>
@@ -317,7 +383,7 @@
                         <span class="tag">C</span>
                         <span class="tag">Embedded</span>
                     </div>
-                    <a href="https://github.com/Maxixler/EmbeddedProjects" target="_blank" class="project-link">
+                    <a href="https://github.com/Maxixler/EmbeddedProjects" target="_blank" rel="noopener noreferrer" class="project-link">
                         View on GitHub &#8599;
                     </a>
                 </div>
@@ -331,7 +397,7 @@
                         <span class="tag">C++</span>
                         <span class="tag">IoT</span>
                     </div>
-                    <a href="https://github.com/Maxixler/DeneyapProjeler" target="_blank" class="project-link">
+                    <a href="https://github.com/Maxixler/DeneyapProjeler" target="_blank" rel="noopener noreferrer" class="project-link">
                         View on GitHub &#8599;
                     </a>
                 </div>
@@ -345,7 +411,7 @@
                         <span class="tag">C</span>
                         <span class="tag">C++</span>
                     </div>
-                    <a href="https://github.com/Maxixler/C-Cpp" target="_blank" class="project-link">
+                    <a href="https://github.com/Maxixler/C-Cpp" target="_blank" rel="noopener noreferrer" class="project-link">
                         View on GitHub &#8599;
                     </a>
                 </div>
@@ -371,7 +437,7 @@
                         Prototyped and tested a RISC-V System-on-Chip on FPGA, covering the full design
                         pipeline from RTL to silicon validation.
                     </p>
-                    <a href="https://dergipark.org.tr/tr/pub/pajes/article/1815680" target="_blank" class="pub-link">
+                    <a href="https://dergipark.org.tr/tr/pub/pajes/article/1815680" target="_blank" rel="noopener noreferrer" class="pub-link">
                         &#128196; Read Full Paper on DergiPark &#8599;
                     </a>
                 </div>
@@ -461,13 +527,13 @@
                     <p>ereenkale@gmail.com</p>
                 </a>
 
-                <a href="https://www.linkedin.com/in/erenkale/" target="_blank" class="contact-card glass-card"
+                <a href="https://www.linkedin.com/in/erenkale/" target="_blank" rel="noopener noreferrer" class="contact-card glass-card"
                     data-animate>
                     <div class="contact-icon">&#128279;</div>
                     <h3>LinkedIn</h3>
                     <p>linkedin.com/in/erenkale</p>
                 </a>
-                <a href="https://github.com/Maxixler" target="_blank" class="contact-card glass-card" data-animate>
+                <a href="https://github.com/Maxixler" target="_blank" rel="noopener noreferrer" class="contact-card glass-card" data-animate>
                     <div class="contact-icon">&#128187;</div>
                     <h3>GitHub</h3>
                     <p>github.com/Maxixler</p>
@@ -484,14 +550,14 @@
         <div class="container">
             <p>Designed & Built by <strong>Eren Kale</strong> &copy; 2026</p>
             <div class="footer-links">
-                <a href="https://github.com/Maxixler" target="_blank">GitHub</a>
-                <a href="https://www.linkedin.com/in/erenkale/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/Maxixler" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/erenkale/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 <a href="mailto:ereenkale@gmail.com">Email</a>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 
 </html>
