@@ -1165,9 +1165,8 @@ img {
 }
 
 .lang-c1 {
-    border-color: rgba(0, 212, 255, 0.6);
-    color: var(--accent-1);
-    text-shadow: 0 0 8px rgba(0, 212, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
 }
 
 .lang-a2 {
