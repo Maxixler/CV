@@ -16,7 +16,7 @@
 
     <!-- SEO & Social Meta -->
     <meta name="author" content="Eren Kale">
-    <meta name="keywords" content="Eren Kale, Electrical Engineer, Chip Design, RISC-V, FPGA, Embedded Systems, AI, RF Engineering, Portfolio">
+    <meta name="keywords" content="Eren Kale, Electrical Engineer, Chip Design, RISC-V, FPGA, Embedded Systems, AI, RF Engineering, Cybersecurity, OT/ICS Security, Computer Vision, YOLOv8, Portfolio">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://erenkale.dev/">
 
@@ -61,7 +61,7 @@
                 "name": "Technische Universität Ilmenau"
             }
         ],
-        "knowsAbout": ["Chip Design", "RISC-V", "FPGA", "Embedded Systems", "AI", "RF Engineering", "LoRaWAN"]
+        "knowsAbout": ["Chip Design", "RISC-V", "FPGA", "Embedded Systems", "AI", "RF Engineering", "LoRaWAN", "Cybersecurity", "OT/ICS Security", "Computer Vision"]
     }
     </script>
 
@@ -356,32 +356,69 @@
                     </div>
                 </div>
 
-                <div class="project-card glass-card" data-animate>
+                <div class="project-card glass-card github-card" data-animate>
                     <div class="project-icon">&#128225;</div>
-                    <div class="project-status">Sept 2025 — Present</div>
-                    <h3>SDR-Based LoRaWAN Analysis</h3>
-                    <p class="project-badge">Senior Design Project</p>
+                    <div class="project-status">Senior Design Project</div>
+                    <h3>SDR-Based UMTS Signal Analysis</h3>
+                    <p class="project-badge">Graduation Project</p>
                     <p>
-                        Analyzing 868 MHz signals in real-time using <strong>USRP E310 SDR</strong>,
-                        UHD drivers, and <strong>GNU Radio</strong> on Arch Linux.
+                        Sampling and analyzing UMTS signals in real-time using <strong>USRP E310 SDR</strong>,
+                        UHD drivers, and <strong>GNU Radio</strong> on Arch Linux. Covers 868 MHz LoRaWAN analysis
+                        and signal processing pipelines.
                     </p>
                     <div class="project-tech">
                         <span class="tag">GNU Radio</span>
                         <span class="tag">USRP E310</span>
                         <span class="tag">SDR</span>
+                        <span class="tag">UMTS</span>
                         <span class="tag">LoRaWAN</span>
                     </div>
+                    <a href="https://github.com/Maxixler/BitirmeProjesi" target="_blank" rel="noopener noreferrer" class="project-link">
+                        View on GitHub &#8599;
+                    </a>
                 </div>
 
                 <!-- GitHub Repos -->
                 <div class="project-card glass-card github-card" data-animate>
+                    <div class="project-icon">&#129302;</div>
+                    <div class="project-status">GitHub Repository</div>
+                    <h3>Low-Level CNN from Scratch</h3>
+                    <p>A Convolutional Neural Network implemented entirely in C++ without high-level frameworks — demonstrating deep understanding of convolution, pooling, backpropagation and matrix operations at the hardware level.</p>
+                    <div class="project-tech">
+                        <span class="tag">C++</span>
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag">Neural Networks</span>
+                    </div>
+                    <a href="https://github.com/Maxixler/LowLevel-CNN" target="_blank" rel="noopener noreferrer" class="project-link">
+                        View on GitHub &#8599;
+                    </a>
+                </div>
+
+                <div class="project-card glass-card github-card" data-animate>
+                    <div class="project-icon">&#128248;</div>
+                    <div class="project-status">GitHub Repository</div>
+                    <h3>Computer Vision Projects</h3>
+                    <p>Industrial computer vision applications using OpenCV and YOLOv8 for real-time object detection, image processing, and visual analysis pipelines.</p>
+                    <div class="project-tech">
+                        <span class="tag">Python</span>
+                        <span class="tag">OpenCV</span>
+                        <span class="tag">YOLOv8</span>
+                        <span class="tag">Jupyter</span>
+                    </div>
+                    <a href="https://github.com/Maxixler/ComputerVision" target="_blank" rel="noopener noreferrer" class="project-link">
+                        View on GitHub &#8599;
+                    </a>
+                </div>
+
+                <div class="project-card glass-card github-card" data-animate>
                     <div class="project-icon">&#128187;</div>
                     <div class="project-status">GitHub Repository</div>
                     <h3>Embedded Projects</h3>
-                    <p>Collection of embedded systems projects and firmware experiments.</p>
+                    <p>Collection of embedded systems projects and firmware experiments targeting microcontrollers and low-level hardware programming.</p>
                     <div class="project-tech">
                         <span class="tag">C</span>
                         <span class="tag">Embedded</span>
+                        <span class="tag">Firmware</span>
                     </div>
                     <a href="https://github.com/Maxixler/EmbeddedProjects" target="_blank" rel="noopener noreferrer" class="project-link">
                         View on GitHub &#8599;
@@ -392,10 +429,11 @@
                     <div class="project-icon">&#127918;</div>
                     <div class="project-status">GitHub Repository</div>
                     <h3>Deneyap Kart Projects</h3>
-                    <p>Hardware and software projects built for the Deneyap development board.</p>
+                    <p>Hardware and software projects built for the Deneyap development board — IoT sensors, actuators, and embedded system applications.</p>
                     <div class="project-tech">
                         <span class="tag">C++</span>
                         <span class="tag">IoT</span>
+                        <span class="tag">Embedded</span>
                     </div>
                     <a href="https://github.com/Maxixler/DeneyapProjeler" target="_blank" rel="noopener noreferrer" class="project-link">
                         View on GitHub &#8599;
@@ -405,11 +443,12 @@
                 <div class="project-card glass-card github-card" data-animate>
                     <div class="project-icon">&#128421;</div>
                     <div class="project-status">GitHub Repository</div>
-                    <h3>C & C++ Projects</h3>
-                    <p>Algorithmic problems, data structures, and systems programming in C/C++.</p>
+                    <h3>C &amp; C++ Projects</h3>
+                    <p>Advanced algorithmic problems, data structures, and modern C++ (C++20/23) systems programming with performance-oriented design.</p>
                     <div class="project-tech">
                         <span class="tag">C</span>
-                        <span class="tag">C++</span>
+                        <span class="tag">C++20</span>
+                        <span class="tag">Algorithms</span>
                     </div>
                     <a href="https://github.com/Maxixler/C-Cpp" target="_blank" rel="noopener noreferrer" class="project-link">
                         View on GitHub &#8599;
@@ -419,12 +458,13 @@
                 <div class="project-card glass-card github-card" data-animate>
                     <div class="project-icon">&#128269;</div>
                     <div class="project-status">GitHub · Security-Fundamentals</div>
-                    <h3>Network Scanner</h3>
-                    <p>Python-based tool for scanning network devices and open services. Identifies live hosts and detects running services across subnets.</p>
+                    <h3>Network Scanner &amp; Port Analyzer</h3>
+                    <p>Nmap-like reconnaissance tool that scans subnets, identifies live hosts, detects running services, and exports findings to a visual dashboard.</p>
                     <div class="project-tech">
                         <span class="tag">Python</span>
                         <span class="tag">Networking</span>
                         <span class="tag">Scapy</span>
+                        <span class="tag">Dashboard</span>
                     </div>
                     <a href="https://github.com/Maxixler/Security-Fundamentals" target="_blank" rel="noopener noreferrer" class="project-link">
                         View on GitHub &#8599;
@@ -434,12 +474,13 @@
                 <div class="project-card glass-card github-card" data-animate>
                     <div class="project-icon">&#128737;</div>
                     <div class="project-status">GitHub · Security-Fundamentals</div>
-                    <h3>Firewall Simulator</h3>
-                    <p>Software-based firewall rule engine that simulates packet filtering, stateful inspection, and traffic policy enforcement.</p>
+                    <h3>Stateful Firewall Simulator</h3>
+                    <p>6-module network firewall engine simulating Purdue Model segmentation with stateful anomaly detection and IT-to-OT traffic policy enforcement.</p>
                     <div class="project-tech">
                         <span class="tag">Python</span>
                         <span class="tag">Firewall</span>
-                        <span class="tag">Packet Filtering</span>
+                        <span class="tag">Stateful Inspection</span>
+                        <span class="tag">Purdue Model</span>
                     </div>
                     <a href="https://github.com/Maxixler/Security-Fundamentals" target="_blank" rel="noopener noreferrer" class="project-link">
                         View on GitHub &#8599;
@@ -449,12 +490,13 @@
                 <div class="project-card glass-card github-card" data-animate>
                     <div class="project-icon">&#128202;</div>
                     <div class="project-status">GitHub · Security-Fundamentals</div>
-                    <h3>SIEM Dashboard</h3>
-                    <p>Security Information and Event Management dashboard for aggregating, correlating, and visualizing security log data in real time.</p>
+                    <h3>Enterprise SIEM &amp; SOC Dashboard</h3>
+                    <p>Central integration platform that normalizes firewall DENY traces and AD JSON logs. Features a correlation engine with sliding-window failure tracking for live brute-force detection.</p>
                     <div class="project-tech">
                         <span class="tag">Python</span>
                         <span class="tag">SIEM</span>
-                        <span class="tag">Log Analysis</span>
+                        <span class="tag">IDS/IPS</span>
+                        <span class="tag">Log Correlation</span>
                     </div>
                     <a href="https://github.com/Maxixler/Security-Fundamentals" target="_blank" rel="noopener noreferrer" class="project-link">
                         View on GitHub &#8599;
@@ -464,27 +506,13 @@
                 <div class="project-card glass-card github-card" data-animate>
                     <div class="project-icon">&#128299;</div>
                     <div class="project-status">GitHub · Security-Fundamentals</div>
-                    <h3>Vulnerability Scanner</h3>
-                    <p>Automated tool for identifying security weaknesses across hosts and services, with CVE matching and severity reporting.</p>
+                    <h3>Vulnerability Scanner &amp; Compliance Auditor</h3>
+                    <p>Maps software versions to NVD endpoints for CVSS scoring and cross-references configurations against ISO 27001 constraints for compliance auditing.</p>
                     <div class="project-tech">
                         <span class="tag">Python</span>
-                        <span class="tag">CVE</span>
-                        <span class="tag">Vuln Assessment</span>
-                    </div>
-                    <a href="https://github.com/Maxixler/Security-Fundamentals" target="_blank" rel="noopener noreferrer" class="project-link">
-                        View on GitHub &#8599;
-                    </a>
-                </div>
-
-                <div class="project-card glass-card github-card" data-animate>
-                    <div class="project-icon">&#128272;</div>
-                    <div class="project-status">GitHub · Security-Fundamentals</div>
-                    <h3>IDS / IPS System</h3>
-                    <p>Intrusion Detection and Prevention System that monitors network traffic for suspicious patterns and automatically blocks threats.</p>
-                    <div class="project-tech">
-                        <span class="tag">Python</span>
-                        <span class="tag">IDS/IPS</span>
-                        <span class="tag">Threat Detection</span>
+                        <span class="tag">CVE/CVSS</span>
+                        <span class="tag">ISO 27001</span>
+                        <span class="tag">NVD</span>
                     </div>
                     <a href="https://github.com/Maxixler/Security-Fundamentals" target="_blank" rel="noopener noreferrer" class="project-link">
                         View on GitHub &#8599;
@@ -495,10 +523,11 @@
                     <div class="project-icon">&#128268;</div>
                     <div class="project-status">GitHub · Security-Fundamentals</div>
                     <h3>OT / ICS Security Monitor</h3>
-                    <p>Monitoring and anomaly detection for Operational Technology and Industrial Control Systems. Covers SCADA threat modeling and protocol analysis.</p>
+                    <p>Uses pymodbus to simulate a live Refinery Boiler with Register Manipulation attacks instantly detected by a passive Modbus IDS analyzer. Covers SCADA threat modeling.</p>
                     <div class="project-tech">
                         <span class="tag">Python</span>
                         <span class="tag">OT/SCADA</span>
+                        <span class="tag">Modbus</span>
                         <span class="tag">ICS Security</span>
                     </div>
                     <a href="https://github.com/Maxixler/Security-Fundamentals" target="_blank" rel="noopener noreferrer" class="project-link">
@@ -581,10 +610,22 @@
                         <span class="skill-tag">Python</span>
                         <span class="skill-tag">MATLAB</span>
                         <span class="skill-tag">OpenCV</span>
+                        <span class="skill-tag">YOLOv8</span>
                         <span class="skill-tag">TensorFlow</span>
                         <span class="skill-tag">Simulink</span>
                         <span class="skill-tag">GNU Radio</span>
                         <span class="skill-tag">UHD Drivers</span>
+                    </div>
+                </div>
+                <div class="skill-category glass-card" data-animate>
+                    <h3>&#128274; Cybersecurity</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Network Security</span>
+                        <span class="skill-tag">SIEM / SOC</span>
+                        <span class="skill-tag">IDS / IPS</span>
+                        <span class="skill-tag">OT / ICS Security</span>
+                        <span class="skill-tag">Vulnerability Assessment</span>
+                        <span class="skill-tag">Firewall Engineering</span>
                     </div>
                 </div>
                 <div class="skill-category glass-card" data-animate>
