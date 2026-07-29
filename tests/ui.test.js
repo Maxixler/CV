@@ -3,8 +3,10 @@ const assert = require("node:assert/strict");
 
 const {
   normalizeLanguage,
+  safeLocalStorage,
   safeStorageGet,
   safeStorageSet,
+  getMobileMenuLabels,
 } = require("../script.js");
 
 test("normalizes language to en or tr", () => {
@@ -32,4 +34,21 @@ test("storage helpers read and write when available", () => {
   };
   assert.equal(safeStorageSet(storage, "portfolio-language", "tr"), true);
   assert.equal(safeStorageGet(storage, "portfolio-language"), "tr");
+});
+
+test("safe local-storage access survives a throwing property getter", () => {
+  const privateContext = {};
+  Object.defineProperty(privateContext, "localStorage", {
+    get() { throw new Error("blocked"); },
+  });
+
+  assert.equal(safeLocalStorage(privateContext), null);
+});
+
+test("returns Turkish labels for the mobile navigation control", () => {
+  assert.deepEqual(getMobileMenuLabels("tr"), {
+    button: "Menü",
+    open: "Gezinmeyi aç",
+    close: "Gezinmeyi kapat",
+  });
 });

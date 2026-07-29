@@ -7,6 +7,14 @@
       : "en";
   }
 
+  function safeLocalStorage(context) {
+    try {
+      return context?.localStorage ?? null;
+    } catch {
+      return null;
+    }
+  }
+
   function safeStorageGet(storage, key) {
     try {
       return storage?.getItem(key) ?? null;
@@ -23,6 +31,19 @@
     } catch {
       return false;
     }
+  }
+
+  function getMobileMenuLabels(language) {
+    return normalizeLanguage(language) === "tr"
+      ? { button: "Men\u00fc", open: "Gezinmeyi a\u00e7", close: "Gezinmeyi kapat" }
+      : { button: "Menu", open: "Open navigation", close: "Close navigation" };
+  }
+
+  function updateMobileMenuToggle(toggle, language) {
+    const labels = getMobileMenuLabels(language);
+    const expanded = toggle.getAttribute("aria-expanded") === "true";
+    toggle.textContent = labels.button;
+    toggle.setAttribute("aria-label", expanded ? labels.close : labels.open);
   }
 
   function applyLanguage(language) {
@@ -52,6 +73,10 @@
       );
     }
 
+    document.querySelectorAll("[data-menu-toggle]").forEach((menuToggle) => {
+      updateMobileMenuToggle(menuToggle, resolved);
+    });
+
     if (typeof CustomEvent === "function") {
       document.dispatchEvent(new CustomEvent("portfolio:languagechange", {
         detail: { language: resolved },
@@ -66,7 +91,7 @@
     toggle.addEventListener("click", () => {
       const next = document.documentElement.lang === "tr" ? "en" : "tr";
       applyLanguage(next);
-      safeStorageSet(globalObject.localStorage, STORAGE_KEY, next);
+      safeStorageSet(safeLocalStorage(globalObject), STORAGE_KEY, next);
     });
   }
 
@@ -79,19 +104,18 @@
     const toggle = document.createElement("button");
     toggle.type = "button";
     toggle.dataset.menuToggle = "true";
-    toggle.textContent = "Menu";
     toggle.setAttribute("aria-controls", links.id);
     toggle.setAttribute("aria-expanded", "false");
-    toggle.setAttribute("aria-label", "Open navigation");
+    updateMobileMenuToggle(toggle, document.documentElement.lang);
 
     const closeMenu = () => {
       toggle.setAttribute("aria-expanded", "false");
-      toggle.setAttribute("aria-label", "Open navigation");
+      updateMobileMenuToggle(toggle, document.documentElement.lang);
       links.dataset.open = "false";
     };
     const openMenu = () => {
       toggle.setAttribute("aria-expanded", "true");
-      toggle.setAttribute("aria-label", "Close navigation");
+      updateMobileMenuToggle(toggle, document.documentElement.lang);
       links.dataset.open = "true";
     };
 
@@ -127,13 +151,20 @@
     document.querySelectorAll("main > section").forEach((section) => observer.observe(section));
   }
 
-  const api = { normalizeLanguage, safeStorageGet, safeStorageSet, applyLanguage };
+  const api = {
+    normalizeLanguage,
+    safeLocalStorage,
+    safeStorageGet,
+    safeStorageSet,
+    getMobileMenuLabels,
+    applyLanguage,
+  };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   if (globalObject) globalObject.PortfolioApp = api;
 
   if (typeof document !== "undefined") {
     document.addEventListener("DOMContentLoaded", () => {
-      const stored = safeStorageGet(globalObject.localStorage, STORAGE_KEY);
+      const stored = safeStorageGet(safeLocalStorage(globalObject), STORAGE_KEY);
       const initial = stored ? normalizeLanguage(stored) : "en";
       applyLanguage(initial);
       initializeLanguageToggle();
