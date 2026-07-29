@@ -91,3 +91,10 @@ test("separates compact radar markers from full-size selection controls", () => 
   assert.match(listButton, /min-height:\s*44px;/);
   assert.doesNotMatch(css, /\[data-radar-plot\]\s+button/);
 });
+
+test("styles the no-JavaScript availability notice", () => {
+  const notice = ruleFor(".noscript-note");
+  assert.match(notice, /border:/);
+  assert.match(notice, /background:/);
+  assert.match(notice, /color:/);
+});

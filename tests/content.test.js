@@ -38,3 +38,55 @@ test("public content does not contain the CV phone number", () => {
   const allCopy = JSON.stringify(content);
   assert.doesNotMatch(allCopy, /507\s*906\s*0730/);
 });
+
+test("selected cases keep complete equivalent narratives in both languages", () => {
+  const narrativeParts = ["opportunity", "decision", "execution", "evidence", "insight"];
+  for (const language of SUPPORTED_LANGUAGES) {
+    for (const label of narrativeParts) {
+      const key = `cases.label.${label}`;
+      assert.notEqual(getText(language, key), `[${key}]`, `Missing ${language} key: ${key}`);
+    }
+    for (const caseId of ["mergen", "sdr", "edgeAi"]) {
+      for (const part of narrativeParts) {
+        const key = `cases.${caseId}.${part}`;
+        assert.notEqual(
+          getText(language, key),
+          `[${key}]`,
+          `Missing ${language} key: ${key}`,
+        );
+      }
+    }
+  }
+
+  assert.match(getText("en", "cases.mergen.evidence"), /TÜBİTAK 2209-A.*7th.*Teknofest/);
+  assert.match(getText("tr", "cases.mergen.evidence"), /TÜBİTAK 2209-A.*Teknofest.*7\./);
+  assert.match(getText("en", "cases.sdr.evidence"), /USRP E310.*GNU Radio.*868 MHz/);
+  assert.match(getText("tr", "cases.sdr.evidence"), /USRP E310.*GNU Radio.*868 MHz/);
+  assert.match(getText("en", "cases.edgeAi.evidence"), /OpenCV.*TensorFlow.*Raspberry Pi 5/);
+  assert.match(getText("tr", "cases.edgeAi.evidence"), /OpenCV.*TensorFlow.*Raspberry Pi 5/);
+});
+
+test("trajectory copy is bilingual and limited to verified CV evidence", () => {
+  for (const language of SUPPORTED_LANGUAGES) {
+    for (const item of [
+      "marmara",
+      "ataturk",
+      "ilmenau",
+      "industry",
+      "publicationLeadership",
+    ]) {
+      for (const field of ["title", "body"]) {
+        const key = `trajectory.${item}.${field}`;
+        assert.notEqual(getText(language, key), `[${key}]`, `Missing ${language} key: ${key}`);
+      }
+    }
+  }
+
+  const englishTrajectory = Object.entries(content.en)
+    .filter(([key]) => key.startsWith("trajectory."))
+    .map(([, value]) => value)
+    .join(" ");
+  assert.doesNotMatch(englishTrajectory, /microelectronics/i);
+  assert.match(englishTrajectory, /PROFEN.*Turkcell.*E3TAM.*T3 Foundation/s);
+  assert.match(englishTrajectory, /400\+.*Teknofest/s);
+});

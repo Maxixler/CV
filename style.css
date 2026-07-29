@@ -149,6 +149,18 @@ h3 {
   transform: translateY(0);
 }
 
+.noscript-note {
+  width: min(calc(100% - 2rem), var(--max-width));
+  margin: 1rem auto;
+  padding: 0.9rem 1rem;
+  border: 2px solid var(--ink);
+  color: var(--ink);
+  background: var(--signal-yellow);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
 .site-header {
   position: sticky;
   top: 0;

@@ -46,6 +46,16 @@
     toggle.setAttribute("aria-label", expanded ? labels.close : labels.open);
   }
 
+  function updateCaseLabel(detail, language, getText) {
+    const match = detail?.dataset?.i18n?.match(
+      /^cases\.[^.]+\.(opportunity|decision|execution|evidence|insight)$/,
+    );
+    const label = detail?.previousElementSibling;
+    if (!match || label?.tagName !== "DT" || typeof getText !== "function") return false;
+    label.textContent = getText(language, `cases.label.${match[1]}`);
+    return true;
+  }
+
   function applyLanguage(language) {
     if (typeof document === "undefined" || !globalObject?.PortfolioContent) return;
 
@@ -56,6 +66,9 @@
     document.documentElement.lang = resolved;
     document.querySelectorAll("[data-i18n]").forEach((element) => {
       element.textContent = getText(resolved, element.dataset.i18n);
+    });
+    document.querySelectorAll("dd[data-i18n]").forEach((detail) => {
+      updateCaseLabel(detail, resolved, getText);
     });
     document.title = getText(resolved, "meta.title");
 
@@ -157,6 +170,7 @@
     safeStorageGet,
     safeStorageSet,
     getMobileMenuLabels,
+    updateCaseLabel,
     applyLanguage,
   };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
