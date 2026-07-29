@@ -16,3 +16,4 @@ vesikalik.png
 # Local design previews and generated working files
 .superpowers/
 tmp/
+.worktrees/
