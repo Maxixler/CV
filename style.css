@@ -4,13 +4,14 @@
   --ink: #211B17;
   --cobalt: #2947A9;
   --vermilion: #D64D30;
+  --vermilion-deep: #B23821;
   --signal-yellow: #F0BC3B;
   --line: rgba(33, 27, 23, 0.28);
   --font-display: "DM Serif Display", Georgia, serif;
   --font-body: "Inter", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", Consolas, monospace;
   --max-width: 1200px;
-  --focus-ring: 3px solid var(--signal-yellow);
+  --focus-ring: 3px solid var(--ink);
   --space-section: clamp(5rem, 10vw, 9rem);
   --transition: 160ms ease;
 }
@@ -70,7 +71,7 @@ a {
 }
 
 a:hover {
-  color: var(--vermilion);
+  color: var(--vermilion-deep);
 }
 
 p,
@@ -119,6 +120,7 @@ h3 {
 :focus-visible {
   outline: var(--focus-ring);
   outline-offset: 4px;
+  box-shadow: 0 0 0 6px var(--signal-yellow) !important;
 }
 
 [disabled],
@@ -215,7 +217,8 @@ h3 {
 
 #language-toggle {
   flex: 0 0 auto;
-  min-height: 2.5rem;
+  min-width: 44px;
+  min-height: 44px;
   padding: 0.4rem 0.7rem;
   border: 2px solid var(--ink);
   color: var(--ink);
@@ -237,6 +240,10 @@ h3 {
 
 #language-toggle:active {
   transform: translate(2px, 2px);
+}
+
+[data-menu-toggle] {
+  display: none;
 }
 
 main {
@@ -284,7 +291,7 @@ main {
   display: inline-block;
   padding: 0.35rem 0.55rem;
   color: var(--paper-light);
-  background: var(--vermilion);
+  background: var(--vermilion-deep);
   transform: rotate(-1deg);
 }
 
@@ -339,8 +346,8 @@ main {
 .button:hover,
 .lab-card button:hover:not(:disabled) {
   color: var(--paper-light);
-  background: var(--vermilion);
-  border-color: var(--vermilion);
+  background: var(--vermilion-deep);
+  border-color: var(--vermilion-deep);
   box-shadow: 0.2rem 0.2rem 0 var(--ink);
   transform: translate(-0.1rem, -0.1rem);
 }
@@ -377,7 +384,7 @@ main {
   z-index: 2;
   padding: 0.3rem 0.5rem;
   color: var(--paper-light);
-  background: var(--vermilion);
+  background: var(--vermilion-deep);
   font-family: var(--font-mono);
   font-size: 0.67rem;
   font-weight: 700;
@@ -488,7 +495,7 @@ main {
 }
 
 .lab-card:nth-child(3) {
-  background: var(--vermilion);
+  background: var(--vermilion-deep);
   color: white;
 }
 
@@ -515,7 +522,7 @@ main {
 
 .lab-card input[type="range"] {
   width: 100%;
-  min-height: 2rem;
+  min-height: 44px;
   accent-color: var(--signal-yellow);
 }
 
@@ -717,7 +724,7 @@ main {
   position: absolute;
   top: 1.5rem;
   left: 1.25rem;
-  color: var(--vermilion);
+  color: var(--vermilion-deep);
   font-family: var(--font-mono);
   font-size: 0.8rem;
   font-weight: 700;
@@ -904,15 +911,25 @@ main {
   .nav-links {
     order: 3;
     width: 100%;
-    display: none;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: stretch;
     gap: 0;
     padding-top: 0.75rem;
     border-top: 1px solid var(--line);
   }
 
-  .nav-links[data-open="true"] {
-    display: grid;
+  .site-header[data-menu-enhanced="true"]:has([data-menu-toggle][aria-controls][aria-expanded])
+    .nav-links:not([data-open="true"]) {
+    display: none;
+  }
+
+  .site-header[data-menu-enhanced="true"] [data-menu-toggle][aria-controls][aria-expanded] {
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .nav-links a {
