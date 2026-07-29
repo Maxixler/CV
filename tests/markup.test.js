@@ -49,3 +49,38 @@ test("the English fallback announces Turkish as the language-toggle destination"
     /<button[^>]+id=["']language-toggle["'][^>]+aria-label=["']Türkçe diline geç["']/,
   );
 });
+
+test("gives every selected case the approved five-part narrative", () => {
+  for (const title of [
+    "Mergen Low-Power Processor",
+    "SDR-Based LoRaWAN Analysis",
+    "Embedded AI at E3TAM",
+  ]) {
+    const caseArticle = html.match(
+      new RegExp(`<article class=["']case-card["'][\\s\\S]*?<h3[^>]*>${title}</h3>([\\s\\S]*?)</article>`),
+    );
+    assert.ok(caseArticle, `Missing case article: ${title}`);
+    assert.match(
+      caseArticle[1],
+      /<dt>Opportunity<\/dt>[\s\S]*?<dt>Decision<\/dt>[\s\S]*?<dt>Execution<\/dt>[\s\S]*?<dt>Evidence<\/dt>[\s\S]*?<dt>Strategic insight<\/dt>/,
+      `Incomplete narrative for ${title}`,
+    );
+  }
+});
+
+test("keeps compact supporting evidence, publication, and verified project links", () => {
+  assert.match(html, /id=["']supporting-evidence["']/);
+  for (const evidence of ["PROFEN", "Turkcell", "E3TAM", "T3 Foundation", "400+"]) {
+    assert.match(html, new RegExp(evidence));
+  }
+  for (const url of [
+    "github.com/Maxixler/BitirmeProjesi",
+    "github.com/Maxixler/LowLevel-CNN",
+    "github.com/Maxixler/ComputerVision",
+    "github.com/Maxixler/EmbeddedProjects",
+    "github.com/Maxixler/DeneyapProjeler",
+    "dergipark.org.tr/tr/pub/pajes/article/1815680",
+  ]) {
+    assert.match(html, new RegExp(url.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+});
