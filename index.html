@@ -134,9 +134,25 @@
             <button type="button" data-radar-context="telecom" data-lab-text="radar.filter.telecom" aria-pressed="false">Telecom</button>
             <button type="button" data-radar-context="embedded" data-lab-text="radar.filter.embedded" aria-pressed="false">Embedded</button>
           </div>
-          <div data-radar-plot aria-label="Technology opportunity radar: readiness increases from left to right and impact increases from bottom to top" data-lab-aria="radar.plotLabel" role="group">
+          <div data-radar-plot aria-label="Technology opportunity radar: readiness increases from left to right and impact increases from bottom to top" data-lab-aria="radar.plotLabel" role="img">
             <p>Impact and readiness comparison available when JavaScript is enabled.</p>
           </div>
+          <div class="radar-table-wrap">
+            <table data-radar-fallback>
+              <caption>Curated opportunity data and illustrative next steps</caption>
+              <thead>
+                <tr><th scope="col">Technology</th><th scope="col">Impact</th><th scope="col">Readiness</th><th scope="col">Position</th><th scope="col">Next step</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Edge AI</th><td>84</td><td>76</td><td>Scale</td><td>Shape a scaling path</td></tr>
+                <tr><th scope="row">RISC-V</th><td>88</td><td>62</td><td>Scale</td><td>Shape a scaling path</td></tr>
+                <tr><th scope="row">Software-Defined Radio</th><td>73</td><td>68</td><td>Scale</td><td>Shape a scaling path</td></tr>
+                <tr><th scope="row">Private Networks</th><td>79</td><td>71</td><td>Scale</td><td>Shape a scaling path</td></tr>
+                <tr><th scope="row">Chiplets</th><td>82</td><td>53</td><td>Pilot</td><td>Define a focused pilot</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <ul data-radar-list aria-label="Select a technology" data-lab-aria="radar.selectLabel" hidden></ul>
           <output data-radar-result aria-live="polite">Select a technology to inspect its strategic position.</output>
           <button type="button" data-lab-reset="radar" data-i18n="labs.reset">Reset</button>
         </article>

@@ -560,22 +560,79 @@ main {
   min-height: 11rem;
   margin-block: 1rem;
   padding: 1rem;
-  display: grid;
-  place-items: center;
+  position: relative;
   border: 1px solid currentColor;
+  overflow: hidden;
   background:
     linear-gradient(transparent 49%, currentColor 50%, transparent 51%),
     linear-gradient(90deg, transparent 49%, currentColor 50%, transparent 51%);
 }
 
-[data-radar-plot] button {
-  margin: 0.25rem;
+.radar-marker {
+  width: 0.5rem;
+  height: 0.5rem;
+  position: absolute;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: var(--paper-light);
+  pointer-events: none;
+  transform: translate(-50%, 50%);
 }
 
-[data-radar-plot] button[aria-pressed="true"],
+.radar-marker[data-selected="true"] {
+  background: var(--signal-yellow);
+  box-shadow: 0 0 0 1px currentColor;
+}
+
+[data-radar-list] {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+  list-style: none;
+}
+
+[data-radar-list][hidden] {
+  display: none;
+}
+
+[data-radar-list] button {
+  width: 100%;
+  min-height: 44px;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+[data-radar-list] button[aria-pressed="true"],
 [data-roadmap-columns] button[aria-pressed="true"] {
   color: var(--ink);
   background: var(--signal-yellow);
+}
+
+.radar-table-wrap {
+  max-width: 100%;
+  margin-block: 1rem;
+  overflow-x: auto;
+}
+
+[data-radar-fallback] {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+}
+
+[data-radar-fallback] caption {
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+[data-radar-fallback] th,
+[data-radar-fallback] td {
+  padding: 0.35rem;
+  border: 1px solid currentColor;
+  text-align: left;
 }
 
 [data-roadmap-columns] {

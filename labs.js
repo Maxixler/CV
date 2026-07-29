@@ -35,6 +35,38 @@
     return { score, recommendation };
   }
 
+  const roadmapStepLabels = {
+    "validate-need": {
+      en: "Validate need",
+      tr: "İhtiyacı doğrula",
+    },
+    "map-risks": {
+      en: "Map risks",
+      tr: "Riskleri haritala",
+    },
+    "build-pilot": {
+      en: "Build pilot",
+      tr: "Pilot oluştur",
+    },
+    "measure-outcomes": {
+      en: "Measure outcomes",
+      tr: "Sonuçları ölç",
+    },
+    "prepare-scaling": {
+      en: "Prepare scaling",
+      tr: "Ölçeklemeyi hazırla",
+    },
+    "transfer-value": {
+      en: "Transfer value",
+      tr: "Değeri aktar",
+    },
+  };
+
+  function roadmapStepLabel(step, language) {
+    const resolvedLanguage = language === "tr" ? "tr" : "en";
+    return roadmapStepLabels[step]?.[resolvedLanguage] || step;
+  }
+
   function buildRoadmapSummary({ now = [], next = [], later = [] }, language = "en") {
     const hasStep = now.length + next.length + later.length > 0;
     if (!hasStep) {
@@ -45,10 +77,13 @@
     const labels = language === "tr"
       ? { now: "Şimdi", next: "Sonraki", later: "Daha Sonra" }
       : { now: "Now", next: "Next", later: "Later" };
+    const displaySteps = (steps) => (
+      steps.map((step) => roadmapStepLabel(step, language)).join(", ") || "—"
+    );
     return [
-      `${labels.now}: ${now.join(", ") || "—"}`,
-      `${labels.next}: ${next.join(", ") || "—"}`,
-      `${labels.later}: ${later.join(", ") || "—"}`,
+      `${labels.now}: ${displaySteps(now)}`,
+      `${labels.next}: ${displaySteps(next)}`,
+      `${labels.later}: ${displaySteps(later)}`,
     ].join(" | ");
   }
 
@@ -90,6 +125,37 @@
     },
   ];
 
+  function createOpportunityRadarState({
+    context = "all",
+    selectedId = opportunities[0].id,
+  } = {}) {
+    const allowedContexts = ["all", "industrial", "telecom", "embedded"];
+    const resolvedContext = allowedContexts.includes(context) ? context : "all";
+    const visibleOpportunities = opportunities.filter((opportunity) => (
+      resolvedContext === "all" || opportunity.contexts.includes(resolvedContext)
+    ));
+    const resolvedSelectedId = visibleOpportunities.some(
+      (opportunity) => opportunity.id === selectedId,
+    )
+      ? selectedId
+      : visibleOpportunities[0]?.id;
+
+    return {
+      context: resolvedContext,
+      selectedId: resolvedSelectedId,
+      items: opportunities.map((opportunity) => ({
+        ...opportunity,
+        quadrant: classifyOpportunity(opportunity),
+        visible: visibleOpportunities.includes(opportunity),
+        selected: opportunity.id === resolvedSelectedId,
+        marker: {
+          left: opportunity.readiness,
+          bottom: opportunity.impact,
+        },
+      })),
+    };
+  }
+
   const tradeoffDefaults = {
     impact: 80,
     speed: 65,
@@ -98,19 +164,32 @@
   };
 
   const roadmapDefaults = {
-    now: ["Validate need", "Map risks"],
-    next: ["Build pilot", "Measure outcomes"],
-    later: ["Prepare scaling", "Transfer value"],
+    now: ["validate-need", "map-risks"],
+    next: ["build-pilot", "measure-outcomes"],
+    later: ["prepare-scaling", "transfer-value"],
   };
 
-  const roadmapStepIds = {
-    "Validate need": "validate-need",
-    "Map risks": "map-risks",
-    "Build pilot": "build-pilot",
-    "Measure outcomes": "measure-outcomes",
-    "Prepare scaling": "prepare-scaling",
-    "Transfer value": "transfer-value",
-  };
+  function createRoadmapState(source = roadmapDefaults) {
+    return {
+      now: [...(source.now || [])],
+      next: [...(source.next || [])],
+      later: [...(source.later || [])],
+    };
+  }
+
+  function moveRoadmapStep(roadmap, stepId, target) {
+    const moved = createRoadmapState(roadmap);
+    if (!Object.hasOwn(moved, target)) return moved;
+    const containsStep = Object.values(moved).some((steps) => steps.includes(stepId));
+    if (!containsStep) return moved;
+
+    Object.values(moved).forEach((steps) => {
+      const index = steps.indexOf(stepId);
+      if (index >= 0) steps.splice(index, 1);
+    });
+    moved[target].push(stepId);
+    return moved;
+  }
 
   const labText = {
     en: {
@@ -121,6 +200,7 @@
       "radar.filter.telecom": "Telecom",
       "radar.filter.embedded": "Embedded",
       "radar.plotLabel": "Technology opportunity radar: readiness increases from left to right and impact increases from bottom to top",
+      "radar.selectLabel": "Select a technology",
       "radar.scale": "scale",
       "radar.pilot": "pilot",
       "radar.monitor": "monitor",
@@ -158,6 +238,7 @@
       "radar.filter.telecom": "Telekom",
       "radar.filter.embedded": "Gömülü",
       "radar.plotLabel": "Teknoloji fırsat radarı: hazırlık soldan sağa, etki aşağıdan yukarı artar",
+      "radar.selectLabel": "Bir teknoloji seçin",
       "radar.scale": "ölçekleme",
       "radar.pilot": "pilot",
       "radar.monitor": "izleme",
@@ -237,63 +318,83 @@
     const root = document.getElementById("opportunity-radar");
     if (!root) return null;
     const plot = root.querySelector("[data-radar-plot]");
+    const list = root.querySelector("[data-radar-list]");
+    const fallback = root.querySelector("[data-radar-fallback]");
     const output = root.querySelector("[data-radar-result]");
     const filterButtons = Array.from(root.querySelectorAll("[data-radar-context]"));
     const reset = root.querySelector('[data-lab-reset="radar"]');
-    if (!plot || !output) return null;
+    if (!plot || !list || !output) return null;
 
-    let selectedId = opportunities[0].id;
-    let selectedContext = "all";
-    const dots = new Map();
+    let radar = createOpportunityRadarState();
+    const markers = new Map();
+    const listEntries = new Map();
 
     plot.replaceChildren();
-    plot.style.position = "relative";
-    plot.style.display = "block";
+    list.replaceChildren();
+    list.hidden = false;
+    if (fallback) fallback.hidden = true;
 
-    function selectOpportunity(opportunity) {
-      selectedId = opportunity.id;
-      dots.forEach((dot, id) => {
-        dot.setAttribute("aria-pressed", String(id === selectedId));
-      });
-      setOutputText(output, formatOpportunity(opportunity));
-    }
-
-    function updateFilter(context) {
-      selectedContext = context;
+    function updateView(nextRadar) {
+      radar = nextRadar;
       filterButtons.forEach((button) => {
         button.setAttribute(
           "aria-pressed",
-          String(button.dataset.radarContext === selectedContext),
+          String(button.dataset.radarContext === radar.context),
         );
       });
 
-      const visible = opportunities.filter((opportunity) => (
-        selectedContext === "all" || opportunity.contexts.includes(selectedContext)
-      ));
-      opportunities.forEach((opportunity) => {
-        dots.get(opportunity.id).hidden = !visible.includes(opportunity);
+      radar.items.forEach((item) => {
+        const marker = markers.get(item.id);
+        const entry = listEntries.get(item.id);
+        marker.hidden = !item.visible;
+        marker.dataset.selected = String(item.selected);
+        entry.item.hidden = !item.visible;
+        entry.button.setAttribute("aria-pressed", String(item.selected));
       });
 
-      if (!visible.some((opportunity) => opportunity.id === selectedId) && visible[0]) {
-        selectOpportunity(visible[0]);
-      }
+      const selected = opportunities.find(
+        (opportunity) => opportunity.id === radar.selectedId,
+      );
+      if (selected) setOutputText(output, formatOpportunity(selected));
+    }
+
+    function selectOpportunity(opportunityId) {
+      updateView(createOpportunityRadarState({
+        context: radar.context,
+        selectedId: opportunityId,
+      }));
+    }
+
+    function updateFilter(context) {
+      updateView(createOpportunityRadarState({
+        context,
+        selectedId: radar.selectedId,
+      }));
     }
 
     opportunities.forEach((opportunity) => {
-      const dot = document.createElement("button");
-      dot.type = "button";
-      dot.className = "radar-dot";
-      dot.textContent = opportunity.label;
-      dot.dataset.opportunityId = opportunity.id;
-      dot.style.position = "absolute";
-      dot.style.left = `${opportunity.readiness}%`;
-      dot.style.bottom = `${opportunity.impact}%`;
-      dot.style.transform = "translate(-50%, 50%)";
-      dot.setAttribute("aria-pressed", "false");
-      dot.addEventListener("click", () => selectOpportunity(opportunity));
-      dot.addEventListener("focus", () => selectOpportunity(opportunity));
-      dots.set(opportunity.id, dot);
-      plot.append(dot);
+      const marker = document.createElement("span");
+      const item = document.createElement("li");
+      const button = document.createElement("button");
+
+      marker.className = "radar-marker";
+      marker.dataset.opportunityMarker = opportunity.id;
+      marker.style.left = `${opportunity.readiness}%`;
+      marker.style.bottom = `${opportunity.impact}%`;
+      marker.setAttribute("aria-hidden", "true");
+
+      button.type = "button";
+      button.textContent = `${opportunity.label} · ${opportunity.impact}/${opportunity.readiness}`;
+      button.dataset.opportunitySelect = opportunity.id;
+      button.setAttribute("aria-pressed", "false");
+      button.addEventListener("click", () => selectOpportunity(opportunity.id));
+      button.addEventListener("focus", () => selectOpportunity(opportunity.id));
+
+      item.append(button);
+      markers.set(opportunity.id, marker);
+      listEntries.set(opportunity.id, { item, button });
+      plot.append(marker);
+      list.append(item);
     });
 
     filterButtons.forEach((button) => {
@@ -301,19 +402,25 @@
     });
     reset?.addEventListener("click", () => {
       updateFilter("all");
-      selectOpportunity(opportunities[0]);
+      selectOpportunity(opportunities[0].id);
     });
 
     function updateLanguage() {
       plot.setAttribute("aria-label", getLabText("radar.plotLabel"));
+      list.setAttribute("aria-label", getLabText("radar.selectLabel"));
       opportunities.forEach((opportunity) => {
-        dots.get(opportunity.id).setAttribute("aria-label", opportunityAriaLabel(opportunity));
+        listEntries.get(opportunity.id).button.setAttribute(
+          "aria-label",
+          opportunityAriaLabel(opportunity),
+        );
       });
-      const selected = opportunities.find((opportunity) => opportunity.id === selectedId);
-      if (selected) selectOpportunity(selected);
+      const selected = opportunities.find(
+        (opportunity) => opportunity.id === radar.selectedId,
+      );
+      if (selected) setOutputText(output, formatOpportunity(selected));
     }
 
-    updateFilter(selectedContext);
+    updateView(radar);
     updateLanguage();
     return updateLanguage;
   }
@@ -359,14 +466,6 @@
     return updateResult;
   }
 
-  function cloneRoadmapDefaults() {
-    return {
-      now: [...roadmapDefaults.now],
-      next: [...roadmapDefaults.next],
-      later: [...roadmapDefaults.later],
-    };
-  }
-
   function initializeRoadmapBuilder() {
     const root = document.getElementById("roadmap-builder");
     if (!root) return null;
@@ -381,7 +480,7 @@
     const reset = root.querySelector('[data-lab-reset="roadmap"]');
     if (Object.values(stageLists).some((list) => !list) || !summary) return null;
 
-    let roadmap = cloneRoadmapDefaults();
+    let roadmap = createRoadmapState();
 
     function updateSummary() {
       setOutputText(summary, buildRoadmapSummary(roadmap, currentLanguage));
@@ -390,12 +489,12 @@
     function renderRoadmap(focusStepId) {
       Object.entries(stageLists).forEach(([stage, list]) => {
         list.replaceChildren();
-        roadmap[stage].forEach((step) => {
+        roadmap[stage].forEach((stepId) => {
           const item = document.createElement("li");
           const label = document.createElement("span");
           const controls = document.createElement("div");
-          const stepId = roadmapStepIds[step];
-          label.textContent = step;
+          const stepLabel = roadmapStepLabel(stepId, currentLanguage);
+          label.textContent = stepLabel;
 
           Object.keys(stageLists).forEach((target) => {
             const button = document.createElement("button");
@@ -408,14 +507,10 @@
             button.setAttribute("aria-pressed", String(target === stage));
             button.setAttribute(
               "aria-label",
-              `${getLabText("roadmap.move")} ${step}: ${stageLabel}`,
+              `${getLabText("roadmap.move")} ${stepLabel}: ${stageLabel}`,
             );
             button.addEventListener("click", () => {
-              Object.values(roadmap).forEach((steps) => {
-                const index = steps.indexOf(step);
-                if (index >= 0) steps.splice(index, 1);
-              });
-              roadmap[target].push(step);
+              roadmap = moveRoadmapStep(roadmap, stepId, target);
               renderRoadmap(stepId);
             });
             controls.append(button);
@@ -467,7 +562,7 @@
 
     copyButton?.addEventListener("click", copySummary);
     reset?.addEventListener("click", () => {
-      roadmap = cloneRoadmapDefaults();
+      roadmap = createRoadmapState();
       renderRoadmap();
       if (copyStatus) copyStatus.textContent = "";
     });
@@ -504,6 +599,9 @@
     classifyOpportunity,
     calculateStrategicFit,
     buildRoadmapSummary,
+    createOpportunityRadarState,
+    createRoadmapState,
+    moveRoadmapStep,
   };
 
   if (typeof module !== "undefined" && module.exports) module.exports = api;

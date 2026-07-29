@@ -79,3 +79,15 @@ test("uses an accessible vermilion surface for small light text", () => {
   assert.ok(contrastRatio(foreground, background) >= 4.5);
   assert.match(ruleFor(".lab-card:nth-child(3)"), /background:\s*var\(--vermilion-deep\);/);
 });
+
+test("separates compact radar markers from full-size selection controls", () => {
+  const marker = ruleFor(".radar-marker");
+  assert.match(marker, /width:\s*0\.5rem;/);
+  assert.match(marker, /height:\s*0\.5rem;/);
+  assert.match(marker, /pointer-events:\s*none;/);
+
+  const listButton = ruleFor("[data-radar-list] button");
+  assert.match(listButton, /width:\s*100%;/);
+  assert.match(listButton, /min-height:\s*44px;/);
+  assert.doesNotMatch(css, /\[data-radar-plot\]\s+button/);
+});
