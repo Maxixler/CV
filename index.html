@@ -124,43 +124,51 @@
       <h2 id="labs-heading" data-i18n="labs.heading">Three small tools. One strategic story.</h2>
       <p data-i18n="labs.body">Explore how I frame opportunities, balance trade-offs, and turn ideas into roadmaps.</p>
       <div class="labs-grid">
-        <article id="opportunity-radar" class="lab-card" aria-labelledby="radar-title">
+        <article id="opportunity-radar" class="lab-card" aria-labelledby="radar-title" data-innovation-lab="radar">
           <h3 id="radar-title" data-i18n="radar.title">Technology Opportunity Radar</h3>
           <p data-i18n="radar.body">Compare curated technologies by strategic impact and readiness.</p>
-          <p>Explore RISC-V, edge AI, software-defined radio, private networks, and chiplets through industrial, telecom, and embedded contexts.</p>
-          <div data-radar-plot aria-label="Technology opportunity radar" role="img">
+          <p data-lab-text="radar.description">Explore RISC-V, edge AI, software-defined radio, private networks, and chiplets through industrial, telecom, and embedded contexts.</p>
+          <div data-radar-filters role="group" aria-label="Filter opportunities by context" data-lab-aria="radar.filterLabel">
+            <button type="button" data-radar-context="all" data-lab-text="radar.filter.all" aria-pressed="true">All</button>
+            <button type="button" data-radar-context="industrial" data-lab-text="radar.filter.industrial" aria-pressed="false">Industrial</button>
+            <button type="button" data-radar-context="telecom" data-lab-text="radar.filter.telecom" aria-pressed="false">Telecom</button>
+            <button type="button" data-radar-context="embedded" data-lab-text="radar.filter.embedded" aria-pressed="false">Embedded</button>
+          </div>
+          <div data-radar-plot aria-label="Technology opportunity radar: readiness increases from left to right and impact increases from bottom to top" data-lab-aria="radar.plotLabel" role="group">
             <p>Impact and readiness comparison available when JavaScript is enabled.</p>
           </div>
           <output data-radar-result aria-live="polite">Select a technology to inspect its strategic position.</output>
           <button type="button" data-lab-reset="radar" data-i18n="labs.reset">Reset</button>
         </article>
 
-        <article id="tradeoff-studio" class="lab-card" aria-labelledby="tradeoff-title">
+        <article id="tradeoff-studio" class="lab-card" aria-labelledby="tradeoff-title" data-innovation-lab="tradeoff">
           <h3 id="tradeoff-title" data-i18n="tradeoff.title">Engineering Trade-off Studio</h3>
           <p data-i18n="tradeoff.body">Balance impact, speed, risk, and cost to reveal a next action.</p>
-          <p>This illustrative calculator makes the assumptions behind a recommendation visible; it is not a substitute for project discovery.</p>
-          <label>Impact <input name="impact" type="range" min="0" max="100" value="80"></label>
-          <label>Speed <input name="speed" type="range" min="0" max="100" value="65"></label>
-          <label>Risk <input name="risk" type="range" min="0" max="100" value="40"></label>
-          <label>Cost <input name="cost" type="range" min="0" max="100" value="50"></label>
+          <p data-lab-text="tradeoff.description">This illustrative portfolio demonstration makes the assumptions behind a recommendation visible; it is not a substitute for project discovery.</p>
+          <label><span data-lab-text="tradeoff.impact">Impact</span> <input name="impact" data-tradeoff-control type="range" min="0" max="100" value="80"></label>
+          <label><span data-lab-text="tradeoff.speed">Speed</span> <input name="speed" data-tradeoff-control type="range" min="0" max="100" value="65"></label>
+          <label><span data-lab-text="tradeoff.risk">Risk</span> <input name="risk" data-tradeoff-control type="range" min="0" max="100" value="40"></label>
+          <label><span data-lab-text="tradeoff.cost">Cost</span> <input name="cost" data-tradeoff-control type="range" min="0" max="100" value="50"></label>
           <details>
-            <summary>How the illustrative score works</summary>
-            <p>Higher impact and speed help the score; higher risk and cost reduce it.</p>
+            <summary data-lab-text="tradeoff.formulaSummary">How the illustrative score works</summary>
+            <p data-lab-text="tradeoff.formula">Score = impact × 0.40 + speed × 0.25 + (100 − risk) × 0.20 + (100 − cost) × 0.15.</p>
           </details>
-          <output data-tradeoff-result aria-live="polite">Strategic fit: 76 — prototype next.</output>
+          <output data-tradeoff-result aria-live="polite" aria-label="Illustrative portfolio demonstration result" data-lab-aria="tradeoff.resultLabel">Strategic fit: 68 — validate assumptions.</output>
           <button type="button" data-lab-reset="tradeoff" data-i18n="labs.reset">Reset</button>
         </article>
 
-        <article id="roadmap-builder" class="lab-card" aria-labelledby="roadmap-title">
+        <article id="roadmap-builder" class="lab-card" aria-labelledby="roadmap-title" data-innovation-lab="roadmap">
           <h3 id="roadmap-title" data-i18n="roadmap.title">Innovation Roadmap Builder</h3>
           <p data-i18n="roadmap.body">Arrange a technology opportunity into Now, Next, and Later.</p>
-          <p>Sequence discovery before scale: validate the need, map risks, build a pilot, measure outcomes, then prepare scaling and value transfer.</p>
+          <p data-lab-text="roadmap.description">Sequence discovery before scale: validate the need, map risks, build a pilot, measure outcomes, then prepare scaling and value transfer.</p>
           <div data-roadmap-columns>
-            <section aria-labelledby="roadmap-now"><h4 id="roadmap-now">Now</h4><ul data-roadmap-stage="now"><li>Validate need</li><li>Map risks</li></ul></section>
-            <section aria-labelledby="roadmap-next"><h4 id="roadmap-next">Next</h4><ul data-roadmap-stage="next"><li>Build pilot</li><li>Measure outcomes</li></ul></section>
-            <section aria-labelledby="roadmap-later"><h4 id="roadmap-later">Later</h4><ul data-roadmap-stage="later"><li>Prepare scaling</li><li>Transfer value</li></ul></section>
+            <section aria-labelledby="roadmap-now"><h4 id="roadmap-now" data-lab-text="roadmap.now">Now</h4><ul data-roadmap-stage="now"><li>Validate need</li><li>Map risks</li></ul></section>
+            <section aria-labelledby="roadmap-next"><h4 id="roadmap-next" data-lab-text="roadmap.next">Next</h4><ul data-roadmap-stage="next"><li>Build pilot</li><li>Measure outcomes</li></ul></section>
+            <section aria-labelledby="roadmap-later"><h4 id="roadmap-later" data-lab-text="roadmap.later">Later</h4><ul data-roadmap-stage="later"><li>Prepare scaling</li><li>Transfer value</li></ul></section>
           </div>
           <output data-roadmap-summary aria-live="polite">Now: validate need and map risks. Next: build a pilot and measure outcomes. Later: prepare scaling and transfer value.</output>
+          <button type="button" data-roadmap-copy data-lab-text="roadmap.copy">Copy summary</button>
+          <span data-roadmap-copy-status aria-live="polite"></span>
           <button type="button" data-lab-reset="roadmap" data-i18n="labs.reset">Reset</button>
         </article>
       </div>
