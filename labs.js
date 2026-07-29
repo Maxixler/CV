@@ -602,6 +602,7 @@
     createOpportunityRadarState,
     createRoadmapState,
     moveRoadmapStep,
+    initializeLabs,
   };
 
   if (typeof module !== "undefined" && module.exports) module.exports = api;
