@@ -67,6 +67,15 @@
     document.querySelectorAll("[data-i18n]").forEach((element) => {
       element.textContent = getText(resolved, element.dataset.i18n);
     });
+    document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+      element.setAttribute(
+        "aria-label",
+        getText(resolved, element.dataset.i18nAriaLabel),
+      );
+    });
+    document.querySelectorAll("[data-i18n-alt]").forEach((element) => {
+      element.setAttribute("alt", getText(resolved, element.dataset.i18nAlt));
+    });
     document.querySelectorAll("dd[data-i18n]").forEach((detail) => {
       updateCaseLabel(detail, resolved, getText);
     });
@@ -79,10 +88,14 @@
 
     const toggle = document.getElementById("language-toggle");
     if (toggle) {
-      toggle.setAttribute("aria-pressed", String(resolved === "tr"));
       toggle.setAttribute(
         "aria-label",
-        resolved === "en" ? "T\u00fcrk\u00e7e diline ge\u00e7" : "Switch to English",
+        getText(
+          resolved,
+          resolved === "en"
+            ? "language.switchToTurkish"
+            : "language.switchToEnglish",
+        ),
       );
     }
 

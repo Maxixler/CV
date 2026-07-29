@@ -22,7 +22,7 @@ HTML, CSS, and vanilla JavaScript and remains readable without JavaScript.
 - Edit bilingual copy in `content.js`; both language dictionaries must keep identical keys.
 - Edit deterministic mini-app logic and curated radar data in `labs.js`.
 - Keep verified CV facts aligned with `EREN_KALE_CV.pdf`.
-- Run `node --test tests/content.test.js tests/markup.test.js tests/labs.test.js tests/ui.test.js tests/styles.test.js` before publishing.
+- Run `node --test tests/content.test.js tests/headers.test.js tests/language.integration.test.js tests/markup.test.js tests/labs.test.js tests/labs.browser.test.js tests/ui.test.js tests/styles.test.js` before publishing.
 
 Keep public GitHub project links under `github.com/Maxixler`, do not expose the
 phone number from the CV, and avoid unsupported metrics or impact claims.

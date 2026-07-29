@@ -65,8 +65,9 @@ test("radar initializer handles filtering, keyboard focus, and localization", (t
     browser.document.querySelector('[data-radar-context="all"]').textContent,
     "Tümü",
   );
-  assert.match(result.value, /etki 79, hazırlık 71/);
-  assert.match(privateNetworks.getAttribute("aria-label"), /etki 79/);
+  assert.match(privateNetworks.textContent, /^Özel Ağlar · 79\/71$/);
+  assert.match(result.value, /^Özel Ağlar: etki 79, hazırlık 71/);
+  assert.match(privateNetworks.getAttribute("aria-label"), /^Özel Ağlar, etki 79/);
 });
 
 test("roadmap initializer moves state, restores keyboard focus, and localizes rerenders", (t) => {

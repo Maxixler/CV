@@ -5,6 +5,7 @@ const path = require("node:path");
 
 const html = fs.readFileSync(path.join(__dirname, "..", "index.html"), "utf8");
 const notFoundHtml = fs.readFileSync(path.join(__dirname, "..", "404.html"), "utf8");
+const sitemap = fs.readFileSync(path.join(__dirname, "..", "sitemap.xml"), "utf8");
 
 test("contains the approved information architecture", () => {
   for (const id of ["hero", "profile", "labs", "cases", "trajectory", "contact"]) {
@@ -47,8 +48,21 @@ test("external links are safe and controls are real buttons", () => {
 test("the English fallback announces Turkish as the language-toggle destination", () => {
   assert.match(
     html,
-    /<button[^>]+id=["']language-toggle["'][^>]+aria-label=["']Türkçe diline geç["']/,
+    /<button[^>]+id=["']language-toggle["'][^>]+aria-label=["']Switch to Turkish["']/,
   );
+  const toggle = html.match(/<button[^>]+id=["']language-toggle["'][^>]*>/)?.[0] || "";
+  assert.doesNotMatch(toggle, /aria-pressed=/);
+});
+
+test("the CV action honestly describes opening the document", () => {
+  assert.match(
+    html,
+    /<a[^>]+href=["']EREN_KALE_CV\.pdf["'][^>]+data-i18n=["']hero\.secondaryCta["'][^>]*>View CV<\/a>/,
+  );
+});
+
+test("the sitemap identifies the current portfolio release", () => {
+  assert.match(sitemap, /<lastmod>2026-07-29<\/lastmod>/);
 });
 
 test("gives every selected case the approved five-part narrative", () => {

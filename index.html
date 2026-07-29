@@ -71,12 +71,12 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to content</a>
+  <a class="skip-link" href="#main-content" data-i18n="a11y.skipToContent">Skip to content</a>
   <noscript>
     <p class="noscript-note">Interactive labs are shown as static examples because JavaScript is unavailable. All portfolio and contact content remains accessible.</p>
   </noscript>
   <header class="site-header">
-    <nav aria-label="Primary navigation">
+    <nav aria-label="Primary navigation" data-i18n-aria-label="a11y.primaryNavigation">
       <a class="brand" href="#hero">EREN KALE / 2026</a>
       <div class="nav-links">
         <a href="#profile" data-i18n="nav.profile">Profile</a>
@@ -85,7 +85,7 @@
         <a href="#trajectory" data-i18n="nav.trajectory">Trajectory</a>
         <a href="#contact" data-i18n="nav.contact">Contact</a>
       </div>
-      <button id="language-toggle" type="button" aria-label="Türkçe diline geç" aria-pressed="false">EN / TR</button>
+      <button id="language-toggle" type="button" aria-label="Switch to Turkish">EN / TR</button>
     </nav>
   </header>
 
@@ -98,18 +98,18 @@
           <p data-i18n="hero.body">I connect engineering depth, business insight, and leadership to move ideas from technical possibility to practical value.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="mailto:ereenkale@gmail.com?subject=Technology%20opportunity" data-i18n="hero.primaryCta">Discuss an opportunity</a>
-            <a class="button button-secondary" href="EREN_KALE_CV.pdf" data-i18n="hero.secondaryCta">Download CV</a>
+            <a class="button button-secondary" href="EREN_KALE_CV.pdf" data-i18n="hero.secondaryCta">View CV</a>
           </div>
         </div>
         <figure class="hero-portrait">
-          <img src="vesikalik_optimized.jpg" alt="Portrait of Eren Kale, Strategy &amp; Innovation Engineer" width="466" height="600" fetchpriority="high">
-          <figcaption>Engineering × business × leadership</figcaption>
+          <img src="vesikalik_optimized.jpg" alt="Portrait of Eren Kale, Strategy &amp; Innovation Engineer" data-i18n-alt="hero.portraitAlt" width="466" height="600" fetchpriority="high">
+          <figcaption data-i18n="hero.portraitCaption">Engineering × business × leadership</figcaption>
         </figure>
       </div>
     </section>
 
     <section id="profile" class="section" aria-labelledby="profile-heading">
-      <p class="section-index">01 / PROFILE</p>
+      <p class="section-index" data-i18n="section.profileIndex">01 / PROFILE</p>
       <h2 id="profile-heading" data-i18n="profile.heading">One profile. Three connected lenses.</h2>
       <div class="profile-grid">
         <article class="profile-lens">
@@ -128,7 +128,7 @@
     </section>
 
     <section id="labs" class="section" aria-labelledby="labs-heading">
-      <p class="section-index">02 / INNOVATION LABS</p>
+      <p class="section-index" data-i18n="section.labsIndex">02 / INNOVATION LABS</p>
       <h2 id="labs-heading" data-i18n="labs.heading">Three small tools. One strategic story.</h2>
       <p data-i18n="labs.body">Explore how I frame opportunities, balance trade-offs, and turn ideas into roadmaps.</p>
       <div class="labs-grid">
@@ -199,7 +199,7 @@
     </section>
 
     <section id="cases" class="section" aria-labelledby="cases-heading">
-      <p class="section-index">03 / SELECTED CASES</p>
+      <p class="section-index" data-i18n="section.casesIndex">03 / SELECTED CASES</p>
       <h2 id="cases-heading" data-i18n="cases.heading">Technical work, reframed as strategic evidence.</h2>
       <div class="cases-grid">
         <article class="case-card">
@@ -239,7 +239,7 @@
     </section>
 
     <section id="trajectory" class="section" aria-labelledby="trajectory-heading">
-      <p class="section-index">04 / TRAJECTORY</p>
+      <p class="section-index" data-i18n="section.trajectoryIndex">04 / TRAJECTORY</p>
       <h2 id="trajectory-heading" data-i18n="trajectory.heading">Proof and trajectory</h2>
       <ol class="trajectory-list">
         <li class="trajectory-item"><h3 data-i18n="trajectory.marmara.title">Marmara University</h3><p data-i18n="trajectory.marmara.body">B.Sc., Electrical and Electronics Engineering, 2022–2026. Coursework includes embedded systems, machine learning, control systems, and communication systems.</p></li>
@@ -249,32 +249,32 @@
         <li class="trajectory-item"><h3 data-i18n="trajectory.publicationLeadership.title">Publication and leadership</h3><p data-i18n="trajectory.publicationLeadership.body">Published RISC-V SoC FPGA prototyping and testing research; formerly Executive Board Chairman and Robotics Division Head for Marmara University's Electrical and Electronics Engineering Club, supporting activities for 400+ members and mentoring Teknofest teams.</p></li>
       </ol>
       <aside id="supporting-evidence" class="supporting-index" aria-labelledby="supporting-evidence-heading">
-        <h3 id="supporting-evidence-heading">Supporting evidence / project index</h3>
+        <h3 id="supporting-evidence-heading" data-i18n="supporting.heading">Supporting evidence / project index</h3>
         <div class="evidence-index">
           <article>
-            <h4>Industry experience</h4>
+            <h4 data-i18n="supporting.industry.title">Industry experience</h4>
             <ul>
-              <li>PROFEN — digital design</li>
-              <li>Turkcell — mobile network planning</li>
-              <li>E3TAM — industrial AI and automation</li>
-              <li>T3 Foundation — Deneyap Kart project development</li>
+              <li data-i18n="supporting.industry.profen">PROFEN — digital design</li>
+              <li data-i18n="supporting.industry.turkcell">Turkcell — mobile network planning</li>
+              <li data-i18n="supporting.industry.e3tam">E3TAM — industrial AI and automation</li>
+              <li data-i18n="supporting.industry.t3">T3 Foundation — Deneyap Kart project development</li>
             </ul>
           </article>
           <article>
-            <h4>Research and leadership</h4>
+            <h4 data-i18n="supporting.research.title">Research and leadership</h4>
             <ul>
-              <li><a href="https://dergipark.org.tr/tr/pub/pajes/article/1815680" target="_blank" rel="noopener noreferrer">FPGA Prototyping: RISC-V Based SoC Design and Testing Processes</a></li>
-              <li>Marmara University Electrical and Electronics Engineering Club — executive-board chair, robotics leadership, and activities for 400+ members.</li>
+              <li><a href="https://dergipark.org.tr/tr/pub/pajes/article/1815680" target="_blank" rel="noopener noreferrer" data-i18n="supporting.research.publication">FPGA Prototyping: RISC-V Based SoC Design and Testing Processes</a></li>
+              <li data-i18n="supporting.research.leadership">Marmara University Electrical and Electronics Engineering Club — executive-board chair, robotics leadership, and activities for 400+ members.</li>
             </ul>
           </article>
           <article>
-            <h4>Selected GitHub work</h4>
+            <h4 data-i18n="supporting.github.title">Selected GitHub work</h4>
             <ul>
-              <li><a href="https://github.com/Maxixler/BitirmeProjesi" target="_blank" rel="noopener noreferrer">SDR-based signal analysis</a></li>
-              <li><a href="https://github.com/Maxixler/LowLevel-CNN" target="_blank" rel="noopener noreferrer">Low-level CNN from scratch</a></li>
-              <li><a href="https://github.com/Maxixler/ComputerVision" target="_blank" rel="noopener noreferrer">Computer vision projects</a></li>
-              <li><a href="https://github.com/Maxixler/EmbeddedProjects" target="_blank" rel="noopener noreferrer">Embedded projects</a></li>
-              <li><a href="https://github.com/Maxixler/DeneyapProjeler" target="_blank" rel="noopener noreferrer">Deneyap Kart projects</a></li>
+              <li><a href="https://github.com/Maxixler/BitirmeProjesi" target="_blank" rel="noopener noreferrer" data-i18n="supporting.github.sdr">SDR-based signal analysis</a></li>
+              <li><a href="https://github.com/Maxixler/LowLevel-CNN" target="_blank" rel="noopener noreferrer" data-i18n="supporting.github.cnn">Low-level CNN from scratch</a></li>
+              <li><a href="https://github.com/Maxixler/ComputerVision" target="_blank" rel="noopener noreferrer" data-i18n="supporting.github.computerVision">Computer vision projects</a></li>
+              <li><a href="https://github.com/Maxixler/EmbeddedProjects" target="_blank" rel="noopener noreferrer" data-i18n="supporting.github.embedded">Embedded projects</a></li>
+              <li><a href="https://github.com/Maxixler/DeneyapProjeler" target="_blank" rel="noopener noreferrer" data-i18n="supporting.github.deneyap">Deneyap Kart projects</a></li>
             </ul>
           </article>
         </div>
@@ -282,7 +282,7 @@
     </section>
 
     <section id="contact" class="section" aria-labelledby="contact-heading">
-      <p class="section-index">05 / CONTACT</p>
+      <p class="section-index" data-i18n="section.contactIndex">05 / CONTACT</p>
       <h2 id="contact-heading" data-i18n="contact.heading">Let's explore what technology could unlock next.</h2>
       <p data-i18n="contact.body">If you are shaping an R&amp;D, innovation, or technology strategy challenge, I would be glad to compare perspectives.</p>
       <div class="contact-actions">
@@ -294,7 +294,7 @@
   </main>
 
   <footer class="site-footer">
-    <p>© 2026 Eren Kale. Strategy &amp; innovation, grounded in engineering.</p>
+    <p data-i18n="footer.copy">© 2026 Eren Kale. Strategy &amp; innovation, grounded in engineering.</p>
   </footer>
 
   <script src="content.js"></script>

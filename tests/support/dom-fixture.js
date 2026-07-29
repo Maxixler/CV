@@ -257,6 +257,70 @@ function createLabsDocument() {
   return document;
 }
 
+function createPortfolioDocument() {
+  const document = createLabsDocument();
+
+  appendElement(document, document.body, "meta", {
+    name: "description",
+    content: "English description",
+  });
+  appendElement(document, document.body, "a", {
+    href: "#main-content",
+    "data-i18n": "a11y.skipToContent",
+  }, "Skip to content");
+
+  const nav = appendElement(document, document.body, "nav", {
+    "aria-label": "Primary navigation",
+    "data-i18n-aria-label": "a11y.primaryNavigation",
+  });
+  appendElement(document, nav, "a", {
+    href: "#profile",
+    "data-i18n": "nav.profile",
+  }, "Profile");
+  appendElement(document, nav, "button", {
+    id: "language-toggle",
+    "aria-label": "Switch to Turkish",
+  }, "EN / TR");
+
+  const figure = appendElement(document, document.body, "figure");
+  appendElement(document, figure, "img", {
+    src: "vesikalik_optimized.jpg",
+    alt: "Portrait of Eren Kale, Strategy & Innovation Engineer",
+    "data-i18n-alt": "hero.portraitAlt",
+  });
+  appendElement(document, figure, "figcaption", {
+    "data-i18n": "hero.portraitCaption",
+  }, "Engineering × business × leadership");
+
+  appendElement(document, document.body, "a", {
+    href: "EREN_KALE_CV.pdf",
+    "data-i18n": "hero.secondaryCta",
+  }, "View CV");
+  appendElement(document, document.body, "p", {
+    "data-i18n": "section.trajectoryIndex",
+  }, "04 / TRAJECTORY");
+  appendElement(document, document.body, "h3", {
+    id: "supporting-evidence-heading",
+    "data-i18n": "supporting.heading",
+  }, "Supporting evidence / project index");
+  appendElement(document, document.body, "h4", {
+    "data-i18n": "supporting.industry.title",
+  }, "Industry experience");
+  appendElement(document, document.body, "li", {
+    "data-i18n": "supporting.industry.profen",
+  }, "PROFEN — digital design");
+  appendElement(document, document.body, "a", {
+    href: "https://github.com/Maxixler/BitirmeProjesi",
+    "data-i18n": "supporting.github.sdr",
+  }, "SDR-based signal analysis");
+  appendElement(document, document.body, "p", {
+    "data-i18n": "footer.copy",
+  }, "© 2026 Eren Kale. Strategy & innovation, grounded in engineering.");
+
+  return document;
+}
+
 module.exports = {
   createLabsDocument,
+  createPortfolioDocument,
 };

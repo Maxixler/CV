@@ -91,6 +91,7 @@
     {
       id: "edge-ai",
       label: "Edge AI",
+      labelTr: "Uç Yapay Zekâ",
       impact: 84,
       readiness: 76,
       contexts: ["industrial", "embedded"],
@@ -98,6 +99,7 @@
     {
       id: "risc-v",
       label: "RISC-V",
+      labelTr: "RISC-V",
       impact: 88,
       readiness: 62,
       contexts: ["industrial", "embedded"],
@@ -105,6 +107,7 @@
     {
       id: "sdr",
       label: "Software-Defined Radio",
+      labelTr: "Yazılım Tanımlı Radyo",
       impact: 73,
       readiness: 68,
       contexts: ["telecom", "embedded"],
@@ -112,6 +115,7 @@
     {
       id: "private-networks",
       label: "Private Networks",
+      labelTr: "Özel Ağlar",
       impact: 79,
       readiness: 71,
       contexts: ["industrial", "telecom"],
@@ -119,6 +123,7 @@
     {
       id: "chiplets",
       label: "Chiplets",
+      labelTr: "Yongacıklar",
       impact: 82,
       readiness: 53,
       contexts: ["industrial"],
@@ -299,19 +304,25 @@
     });
   }
 
+  function opportunityLabel(opportunity) {
+    return currentLanguage === "tr" ? opportunity.labelTr : opportunity.label;
+  }
+
   function formatOpportunity(opportunity) {
     const quadrant = classifyOpportunity(opportunity);
+    const label = opportunityLabel(opportunity);
     if (currentLanguage === "tr") {
-      return `${opportunity.label}: etki ${opportunity.impact}, hazırlık ${opportunity.readiness} — ${getLabText(`radar.${quadrant}`)}. Sonraki adım: ${getLabText(`radar.next.${quadrant}`)}.`;
+      return `${label}: etki ${opportunity.impact}, hazırlık ${opportunity.readiness} — ${getLabText(`radar.${quadrant}`)}. Sonraki adım: ${getLabText(`radar.next.${quadrant}`)}.`;
     }
-    return `${opportunity.label}: impact ${opportunity.impact}, readiness ${opportunity.readiness} — ${getLabText(`radar.${quadrant}`)}. Next: ${getLabText(`radar.next.${quadrant}`)}.`;
+    return `${label}: impact ${opportunity.impact}, readiness ${opportunity.readiness} — ${getLabText(`radar.${quadrant}`)}. Next: ${getLabText(`radar.next.${quadrant}`)}.`;
   }
 
   function opportunityAriaLabel(opportunity) {
+    const label = opportunityLabel(opportunity);
     if (currentLanguage === "tr") {
-      return `${opportunity.label}, etki ${opportunity.impact}, hazırlık ${opportunity.readiness}`;
+      return `${label}, etki ${opportunity.impact}, hazırlık ${opportunity.readiness}`;
     }
-    return `${opportunity.label}, impact ${opportunity.impact}, readiness ${opportunity.readiness}`;
+    return `${label}, impact ${opportunity.impact}, readiness ${opportunity.readiness}`;
   }
 
   function initializeOpportunityRadar() {
@@ -409,7 +420,9 @@
       plot.setAttribute("aria-label", getLabText("radar.plotLabel"));
       list.setAttribute("aria-label", getLabText("radar.selectLabel"));
       opportunities.forEach((opportunity) => {
-        listEntries.get(opportunity.id).button.setAttribute(
+        const button = listEntries.get(opportunity.id).button;
+        button.textContent = `${opportunityLabel(opportunity)} · ${opportunity.impact}/${opportunity.readiness}`;
+        button.setAttribute(
           "aria-label",
           opportunityAriaLabel(opportunity),
         );
