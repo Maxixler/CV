@@ -1,50 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 — Page Not Found | Eren Kale</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: #0a0a0f;
-            color: #e8e8ed;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-        }
-        .container { max-width: 500px; padding: 24px; }
-        h1 {
-            font-size: 6rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, #00d4ff, #7c3aed);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 16px;
-        }
-        p { color: #9898a6; font-size: 1.1rem; margin-bottom: 32px; }
-        a {
-            display: inline-block;
-            padding: 12px 28px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #00d4ff, #7c3aed);
-            color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        a:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,212,255,0.35); }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#F4E7D3">
+  <title>404 — Page Not Found | Eren Kale</title>
+  <style>
+    :root {
+      --paper: #F4E7D3;
+      --ink: #211B17;
+      --cobalt: #2947A9;
+      --vermilion: #D64D30;
+      --signal-yellow: #F0BC3B;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 1.5rem;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, transparent 49.8%, rgba(33, 27, 23, 0.12) 50%, transparent 50.2%),
+        var(--paper);
+      font-family: Inter, system-ui, sans-serif;
+    }
+
+    main {
+      width: min(100%, 42rem);
+      border: 3px solid var(--ink);
+      padding: clamp(1.5rem, 6vw, 4rem);
+      background: var(--paper);
+      box-shadow: 0.75rem 0.75rem 0 var(--signal-yellow);
+    }
+
+    .index {
+      margin: 0 0 1rem;
+      color: var(--cobalt);
+      font-family: Consolas, monospace;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--vermilion);
+      font-family: Georgia, serif;
+      font-size: clamp(5rem, 20vw, 11rem);
+      font-weight: 400;
+      line-height: 0.8;
+    }
+
+    h2 {
+      margin: 1.5rem 0 0.75rem;
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 7vw, 3.6rem);
+      line-height: 1;
+    }
+
+    p {
+      max-width: 42ch;
+      margin: 0 0 2rem;
+      font-size: 1.05rem;
+    }
+
+    a {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--ink);
+      color: var(--paper);
+      background: var(--cobalt);
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0.3rem 0.3rem 0 var(--ink);
+    }
+
+    a:hover {
+      color: var(--ink);
+      background: var(--signal-yellow);
+    }
+
+    a:focus-visible {
+      outline: 3px solid var(--ink);
+      outline-offset: 4px;
+      box-shadow: 0 0 0 6px var(--signal-yellow);
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>404</h1>
-        <p>The page you're looking for doesn't exist or has been moved.</p>
-        <a href="/">← Back to Home</a>
-    </div>
+  <main>
+    <p class="index">ERROR / 404</p>
+    <h1>404</h1>
+    <h2>Signal not found.</h2>
+    <p>The page may have moved, but the portfolio is still available from the home page.</p>
+    <a href="/">Back to home</a>
+  </main>
 </body>
 </html>
